@@ -11,8 +11,10 @@ export async function middleware(req) {
 
     // Authentication
     if (!authUser && !url.pathname.startsWith('/auth')) {
-        url.pathname = '/auth/signIn'
-        return NextResponse.redirect(url)
+        if(url.pathname == '/resetPassword' && !url.searchParams.get('userId') || !url.searchParams.get('token')) {
+            url.pathname = '/auth/signIn'
+            return NextResponse.redirect(url)
+        }
     }
 
     // req.headers.set('Authorization', `Bearer ${token}`)

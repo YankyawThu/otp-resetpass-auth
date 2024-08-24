@@ -30,7 +30,7 @@ export default function SignIn() {
 
     const handleResetPass = async () => {
         if(email) {
-            const res = await fetch('/api/auth/generateResetPassword', {
+            const res = await fetch('/api/auth/generateResetPassToken', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
