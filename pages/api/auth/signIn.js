@@ -36,7 +36,7 @@ export default async function handler(req, res) {
             }
         })
 
-        await SendMail(otp, email)
+        await SendMail('Your otp code', otp, email)
 
         return res.status(200).json({token, userId: existedUser.id})
 

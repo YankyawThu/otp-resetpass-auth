@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
         const url = `${process.env.NEXT_PUBLIC_APP_URL}/auth/resetPassword?userId=${user.id}&token=${encodeURIComponent(token)}`
 
-        await SendMail(url, email)
+        await SendMail('Your password reset link', url, email)
 
         const isResetPass = await prisma.resetPasswordToken.findFirst({
             where: { userId: user.id },

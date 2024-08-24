@@ -42,6 +42,9 @@ export default function ChangePassword() {
                     <input className="border-2 border-gray-500 bg-transparent p-1" onChange={e => setConfirmPass(e.target.value)} type="password" name="confirmPass" placeholder="Enter confirm password" />
                     <button type="submit">Submit</button>
                 </form>
+                <div className="flex flex-col my-3">
+                    <button onClick={() => router.push('/')}>Go Home</button>
+                </div>
             </div>
         </div>
     )
