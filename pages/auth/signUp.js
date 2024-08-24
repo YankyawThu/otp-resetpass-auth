@@ -30,10 +30,10 @@ export default function SignUp() {
             <div>
                 <form method="post" onSubmit={handleSignUp} className="flex flex-col gap-1">
                     <input className="border-2 border-gray-500 bg-transparent p-1" onChange={e => setName(e.target.value)} type="text" name="name" placeholder="Enter name" />
-                    <input className="border-2 border-gray-500 bg-transparent p-1" onChange={e => setEmail(e.target.value)} type="email" name="email" placeholder="Enter email" />
                     {!email ? <span>Email is required</span> : <></>}
-                    <input className="border-2 border-gray-500 bg-transparent p-1" onChange={e => setPassword(e.target.value)} type="password" name="password" placeholder="Enter password" />
+                    <input className="border-2 border-gray-500 bg-transparent p-1" onChange={e => setEmail(e.target.value)} type="email" name="email" placeholder="Enter email" />
                     {!password ? <span>Password is required</span> : <></>}
+                    <input className="border-2 border-gray-500 bg-transparent p-1" onChange={e => setPassword(e.target.value)} type="password" name="password" placeholder="Enter password" />
                     <button type="submit">Sign up</button>
                 </form>
                 <div className="flex flex-col my-3">

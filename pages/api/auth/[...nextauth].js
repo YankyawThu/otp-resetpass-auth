@@ -1,8 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaClient } from "@prisma/client"
-import { compare } from 'bcryptjs'
-
 const prisma = new PrismaClient()
 
 export default NextAuth({
@@ -10,13 +8,24 @@ export default NextAuth({
         CredentialsProvider({
             name: 'Credentials',
             async authorize(credentials, req) {
-                const user = await prisma.user.findUnique({
-                    where: { email: credentials.email },
+                const userOtp = await prisma.otp.findFirst({
+                    orderBy: { createdAt: 'desc' },
+                    where: { userId: credentials.userId, token: credentials.token },
                 })
-                if (user && await compare(credentials.password, user.password)) {
-                    return user
+                const existedUser = await prisma.user.findUnique({
+                    where: { id: credentials.userId },
+                })
+
+                if(existedUser && userOtp) {
+                    if(new Date() > new Date(userOtp.expires)) {
+                        return null
+                    }
+                    else if(userOtp.code !== credentials.otp) {
+                        return null
+                    }
+                    else return {userOtp, existedUser, otp: credentials.otp}
                 }
-                return null
+                else return null
             }
         }),
     ],
@@ -34,10 +43,6 @@ export default NextAuth({
         },
         async redirect({ url, baseUrl }) {
             return baseUrl
-        },
-        async jwt({ token, user, account, profile, session }) {
-            // Add user info to token if the user is signing in for the first time
-            return token
         },
         async session({ session, token, user }) {
             // Manage session data for the client

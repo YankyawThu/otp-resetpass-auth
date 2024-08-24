@@ -42,6 +42,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  otps          Otp[]
   resetPasswordToken      ResetPasswordToken[]
 }
 
@@ -59,5 +60,16 @@ model ResetPasswordToken {
   token      String
   expires    DateTime
   used       Int        @default(0)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Otp {
+  id         String    @id @default(cuid())
+  userId     String    @map("user_id")
+  code       String    
+  expires    DateTime
+  used       Int        @default(0)
+  token      String
+  createdAt  DateTime   @default(now())
   user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
