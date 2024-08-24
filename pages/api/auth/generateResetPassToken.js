@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
         const token = Encrypt(user.id, expires.toISOString())
 
-        const url = `${process.env.NEXT_PUBLIC_APP_URL}/resetPassword?userId=${user.id}&token=${encodeURIComponent(token)}`
+        const url = `${process.env.NEXT_PUBLIC_APP_URL}/auth/resetPassword?userId=${user.id}&token=${encodeURIComponent(token)}`
 
         await SendMail(url, email)
 
