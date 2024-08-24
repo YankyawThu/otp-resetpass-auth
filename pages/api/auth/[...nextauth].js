@@ -23,7 +23,7 @@ export default NextAuth({
                     else if(userOtp.code !== credentials.otp) {
                         return null
                     }
-                    else return {userOtp, existedUser, otp: credentials.otp}
+                    else return {...existedUser, userOtp, otp: credentials.otp}
                 }
                 else return null
             }
