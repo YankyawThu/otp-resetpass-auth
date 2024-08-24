@@ -7,15 +7,8 @@ export async function middleware(req) {
     const url = req.nextUrl.clone()
 
     // Authentication
-    if (!authUser && !url.pathname.startsWith('/auth/signin')) {
-        if(url.pathname == '/resetPassword' && !url.searchParams.get('userId') || !url.searchParams.get('token')) {
-            url.pathname = '/auth/signin'
-            return NextResponse.redirect(url)
-        }
-    }
-
-    if(authUser && !url.pathname.startsWith('/auth/otp') && authUser.passOtp == false) {
-        url.pathname = '/auth/otp'
+    if (!authUser && !url.pathname.startsWith('/auth')) {
+        url.pathname = '/auth/signIn'
         return NextResponse.redirect(url)
     }
 
