@@ -24,4 +24,4 @@
     npm run dev
     ```
 
-[^1]: I use port 3001 in this project because it may conflict with NextAuth
+**Note: I use port 3001 in this project because it may conflict with NextAuth**
