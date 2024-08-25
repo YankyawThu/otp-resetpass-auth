@@ -1,6 +1,6 @@
 ## Installation
 
-**Copy *.env.example* to *.env* file. And then you need to setup for mail and database. I use Postgresql for database and Google for mail service. There will be different what tech you will use. If you use postgresql, the url looks like *postgres://db_username:db_password@localhost:5432/db_name* and for mail service you need to create *app password* in google setting [there](https://myaccount.google.com/apppasswords)**
+**Copy *.env.example* to *.env* file. And then you need to setup for mail and database. I use Postgresql for database and Gmail for mail service. There will be different what tech you will use. If you use postgresql, the url looks like *postgres://db_username:db_password@localhost:5432/db_name* and for mail service you need to create *app password* in google setting [there](https://myaccount.google.com/apppasswords)**
 
 ### Steps
 
@@ -23,3 +23,5 @@
     ```bash
     npm run dev
     ```
+
+[^1]: I use port 3001 in this project because it may conflict with NextAuth
